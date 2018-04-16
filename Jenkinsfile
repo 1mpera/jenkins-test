@@ -1,17 +1,20 @@
 pipeline {
     agent any
-
+    parameters {
+      booleanParam(name: 'RUN_NPM_TEST', defaultValue: true, description: '')
+    }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                sh 'docker -v'
-            }
-        }
         stage('Test') {
+            when {
+               expression { return params.RUN_NPM_TEST}
+            }
+            agent {
+              docker {
+                image 'node:latest'
+              }
+            }
             steps {
-                echo 'Testing..'
-                sh 'whoami'
+                sh "npm test --coverage"
             }
         }
         stage('Deploy') {
