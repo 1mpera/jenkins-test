@@ -37,19 +37,19 @@ pipeline {
 				sh "npm test -- --coverage"
 			}
 		}
+    post {
+  		always {
+  			sh 'echo "This will always run"'
+  			slackSend channel: "#python-priv", color: 'good', message: 'Message from Jenkins Pipeline'
+  		}
+          success {
+            sh 'This will run only if successful'
+          }
+          failure {
+            sh 'This will run only if failed'
+          }
 
+  	}
 	}
-	post {
-		always {
-			sh 'echo "This will always run"'
-			slackSend channel: "#python-priv", color: 'good', message: 'Message from Jenkins Pipeline'
-		}
-        success {
-          sh 'This will run only if successful'
-        }
-        failure {
-          sh 'This will run only if failed'
-        }
 
-	}
 }
