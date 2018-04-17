@@ -34,7 +34,7 @@ pipeline {
 			}
 			steps {
 				sh "pwd"
-				sh "npm test -- --coverage"
+				sh "npm test"
 			}
       post {
         always {
