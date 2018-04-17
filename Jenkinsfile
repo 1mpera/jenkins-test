@@ -21,7 +21,7 @@ pipeline {
 				}
 			}
 			steps {
-				sh "pwd"
+				sh "pwd && whoami"
 				sh "npm install"
 			}
 		}
@@ -38,6 +38,7 @@ pipeline {
 			}
       post {
         always {
+          sh "whoami"
           sh 'echo "This will always run"'
           slackSend channel: "#python-priv", color: 'good', message: 'Message from Jenkins Pipeline'
         }
