@@ -10,7 +10,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "whoami",
     "eject": "react-scripts eject",
     "version": "node ./scripts/version.js"
   }
